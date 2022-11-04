@@ -1,41 +1,46 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿/***************************************************************************
+Copyright 2022, LinXiao
+Copyright 2012-2014,2021, van Ettinger Information Technology, Lopik, The Netherlands
+Copyright 2008-2010, Thoraxcentrum, Erasmus MC, Rotterdam, The Netherlands
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Written by Maarten JB van Ettinger.
+
+Modified by LinXiao
+
+****************************************************************************/
+
+using CommunityToolkit.Mvvm.ComponentModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using ECGConversion;
 using ECGViewer.Common;
 using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using SixLabors.Fonts;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Drawing.Processing;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
-using System.Text;
 using System.Collections;
 using ECGConversion.ECGSignals;
 using System.IO;
 using System.Threading;
 using ECGConversion.ECGGlobalMeasurements;
 using ECGConversion.ECGDiagnostic;
-using ECGViewer.Extensions;
-using ECGViewer.ViewModels;
 using CommunityToolkit.Mvvm.Input;
+using Color = SixLabors.ImageSharp.Color;
 
 namespace ECGViewer.ViewModels
 {
@@ -59,15 +64,17 @@ namespace ECGViewer.ViewModels
             this.openECGFileDialog = new OpenFileDialog();
             this.saveECGFileDialog = new SaveFileDialog();
 
-            this.menuGridNone = ECGDraw.DisplayGrid == ECGDraw.GridType.None;
-            this.menuGridOne = ECGDraw.DisplayGrid == ECGDraw.GridType.OneMillimeters;
-            this.menuGridFive = ECGDraw.DisplayGrid == ECGDraw.GridType.FiveMillimeters;
+            this.MenuGridNone = ECGDraw.DisplayGrid == ECGDraw.GridType.None;
+            this.MenuGridOne = ECGDraw.DisplayGrid == ECGDraw.GridType.OneMillimeters;
+            this.MenuGridFive = ECGDraw.DisplayGrid == ECGDraw.GridType.FiveMillimeters;
 
             this.MenuLeadFormatRegular=true;
-            this.menuFilterNone=true;
-            this.menuGain2=true;
-            this.menuCaliperOff=true;
-            this.menuDisplayInfo=true;
+            this.MenuFilterNone=true;
+            this.MenuGain2=true;
+            this.MenuCaliperOff=true;
+            this.MenuDisplayInfo=true;
+            this.MenuColor1 = true;
+
 
             MenuZoomInCommand=new RelayCommand(MenuZoomInAction);
             MenuZoomOutCommand=new RelayCommand(MenuZoomOutAction);
@@ -133,7 +140,7 @@ namespace ECGViewer.ViewModels
 
         }
 
-        ECGDraw.ECGDrawType _CurrentECGDrawType => ECGDraw.PossibleDrawTypes(_CurrentSignal);
+        public ECGDraw.ECGDrawType _CurrentECGDrawType => ECGDraw.PossibleDrawTypes(_CurrentSignal);
 
 
         private bool menuOpen;
@@ -1520,7 +1527,74 @@ namespace ECGViewer.ViewModels
 
         private void SetColors(int kind)
         {
+            if (kind < 0)
+            {
+                kind = 0;
+            }
 
+            if (kind == 0)
+            {
+                this.menuColor1 = true;
+                this.menuColor2 = false;
+                this.menuColor3 = false;
+                this.menuColor4 = false;
+
+
+
+                ECGDraw.BackColor = Color.White;
+                ECGDraw.GraphColor = Color.FromRgb(255, 187, 187);
+                ECGDraw.GraphSecondColor = Color.FromRgb(255, 229, 229);
+                ECGDraw.SignalColor = Color.Black;
+                ECGDraw.TextColor = Color.Black;
+            }
+            else if (kind == 1)
+            {
+                this.menuColor1 = false;
+                this.menuColor2 = true;
+                this.menuColor3 = false;
+                this.menuColor4 = false;
+
+
+
+                ECGDraw.BackColor = Color.White;
+                ECGDraw.GraphColor = Color.FromRgb(187, 187, 255);
+                ECGDraw.GraphSecondColor = Color.FromRgb(229, 229, 255);
+                ECGDraw.SignalColor = Color.Black;
+                ECGDraw.TextColor = Color.Black;
+            }
+            else if (kind == 2)
+            {
+                this.menuColor1 = false;
+                this.menuColor2 = false;
+                this.menuColor3 = true;
+                this.menuColor4 = false;
+
+
+
+                ECGDraw.BackColor = Color.White;
+                ECGDraw.GraphColor = Color.FromRgb(28, 255, 28);
+                ECGDraw.GraphSecondColor = Color.FromRgb(204, 255, 204);
+                ECGDraw.SignalColor = Color.Black;
+                ECGDraw.TextColor = Color.Black;
+            }
+            else if (kind == 3)
+            {
+                this.menuColor1 = false;
+                this.menuColor2 = false;
+                this.menuColor3 = false;
+                this.menuColor4 = true;
+
+
+
+                ECGDraw.BackColor = Color.Black;
+                ECGDraw.GraphColor = Color.Gray;
+                ECGDraw.GraphSecondColor = Color.FromRgb(96, 96, 96);
+                ECGDraw.SignalColor = Color.Lime;
+                ECGDraw.TextColor = Color.Lime;
+            }
+
+            this.DrawBuffer = null;
+            this.Refresh();
         }
 
 
