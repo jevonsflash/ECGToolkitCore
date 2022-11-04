@@ -1,0 +1,123 @@
+﻿<Window x:Class="ECGViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ECGViewer"
+        mc:Ignorable="d"
+        x:Name="Window"
+        Loaded="Window_Loaded"
+        SizeChanged="Window_SizeChanged"
+        DataContext="{Binding Source={StaticResource Locator},Path= MainWindow}"
+        Title="ECGViewer" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Menu Grid.Row="0"
+              x:Name="mainMenu">
+                <MenuItem  Header="Open" x:Name="menuOpen">
+                    <MenuItem  Header="File ..." x:Name="menuOpenFile" Command="{Binding MenuOpenFileCommand}"></MenuItem>
+                </MenuItem>
+                <MenuItem  Header="View" x:Name="menuView" Command="{Binding MenuViewCommand}">
+                    <MenuItem  Header="Lead Format" x:Name="menuLeadFormat">
+                        <MenuItem  Header="Regular"  IsChecked="{Binding MenuLeadFormatRegular}"  Command="{Binding MenuLeadFormatRegularCommand}"   x:Name="menuLeadFormatRegular"></MenuItem>
+                        <MenuItem  Header="3x4"  IsChecked="{Binding MenuLeadFormatThreeXFour}"  Command="{Binding MenuLeadFormatFourXThreeCommand}"  x:Name="menuLeadFormatThreeXFour"></MenuItem>
+                        <MenuItem  Header="3x4+1"  IsChecked="{Binding MenuLeadFormatThreeXFourPlusOne}"  Command="{Binding MenuLeadFormatFourXThreePlusOneCommand}"  x:Name="menuLeadFormatThreeXFourPlusOne"></MenuItem>
+                        <MenuItem  Header="3x4+3"  IsChecked="{Binding MenuLeadFormatThreeXFourPlusThree}"  Command="{Binding MenuLeadFormatFourXThreePlusThreeCommand}"  x:Name="menuLeadFormatThreeXFourPlusThree"></MenuItem>
+                        <MenuItem  Header="6x2"  IsChecked="{Binding MenuLeadFormatSixXTwo}"  Command="{Binding MenuLeadFormatSixXTwoCommand}"  x:Name="menuLeadFormatSixXTwo"></MenuItem>
+                        <MenuItem  Header="Average Complex"  IsChecked="{Binding MenuLeadFormatMedian}"  Command="{Binding MenuLeadFormatMedianCommand}"  x:Name="menuLeadFormatMedian"></MenuItem>
+
+                    </MenuItem>
+                    <MenuItem  Header="Filter" x:Name="menuFilter">
+                        <MenuItem   Header="None"   IsChecked="{Binding MenuFilterNone}"  Command="{Binding MenuFilterNoneCommand}" x:Name="menuFilterNone"></MenuItem>
+                        <MenuItem  Header="40 Hz (0.05-40 Hz)" IsChecked="{Binding MenuFilter40Hz}"  Command="{Binding MenuFilter40HzCommand}" x:Name="menuFilter40Hz"></MenuItem>
+                        <MenuItem  Header="Muscle (0.05-35 Hz)"  IsChecked="{Binding MenuFilterMuscle}"  Command="{Binding MenuFilterMuscleCommand}" x:Name="menuFilterMuscle"></MenuItem>
+                    </MenuItem>
+
+                    <MenuItem  Header="Gain" x:Name="menuGain">
+
+                        <MenuItem  Header="40 mm/mV"  IsChecked="{Binding MenuGain4}"  Command="{Binding MenuGain4Command}" x:Name="menuGain4"></MenuItem>
+                        <MenuItem  Header="20 mm/mV"  IsChecked="{Binding MenuGain3}"  Command="{Binding MenuGain3Command}" x:Name="menuGain3"></MenuItem>
+                        <MenuItem  Header="10 mm/mV" IsChecked="{Binding MenuGain2}"  Command="{Binding MenuGain2Command}" x:Name="menuGain2"></MenuItem>
+                        <MenuItem  Header="5  mm/mV" IsChecked="{Binding MenuGain1}"  Command="{Binding MenuGain1Command}" x:Name="menuGain1"></MenuItem>
+                    </MenuItem>
+
+                    <MenuItem  Header="Grid Type" x:Name="menuGridType">
+                        <MenuItem  Header="None" IsChecked="{Binding MenuGridNone}"  Command="{Binding MenuGridNoneCommand}" x:Name="menuGridNone"></MenuItem>
+                        <MenuItem  Header="1 mm" IsChecked="{Binding MenuGridOne}"  Command="{Binding MenuGridOneCommand}" x:Name="menuGridOne"></MenuItem>
+                        <MenuItem  Header="5 mm" IsChecked="{Binding MenuGridFive}"  Command="{Binding MenuGridFiveCommand}" x:Name="menuGridFive"></MenuItem>
+                    </MenuItem>
+                    <MenuItem  Header="Color" x:Name="menuColor">
+                        <MenuItem  Header="Red / Black"  IsChecked="{Binding MenuColor1}"  Command="{Binding MenuColor1Command}" x:Name="menuColor1"></MenuItem>
+                        <MenuItem  Header="Blue / Black" IsChecked="{Binding MenuColor2}"  Command="{Binding MenuColor2Command}" x:Name="menuColor2"></MenuItem>
+                        <MenuItem  Header="Green / Black" IsChecked="{Binding MenuColor3}"  Command="{Binding MenuColor3Command}" x:Name="menuColor3"></MenuItem>
+                        <MenuItem  Header="Gray / Green" IsChecked="{Binding MenuColor4}"  Command="{Binding MenuColor4Command}" x:Name="menuColor4"></MenuItem>
+                    </MenuItem>
+                    <MenuItem  Header="Caliper" x:Name="menuCaliper">
+
+                        <MenuItem  Header="Off" IsChecked="{Binding MenuCaliperOff}"  Command="{Binding MenuCaliperOffCommand}" x:Name="menuCaliperOff"></MenuItem>
+                        <MenuItem  Header="Duration"  IsChecked="{Binding MenuCaliperDuration}"  Command="{Binding MenuCaliperDurationCommand}" x:Name="menuCaliperDuration"></MenuItem>
+                        <MenuItem  Header="Duration + uV" IsChecked="{Binding MenuCaliperBoth}"  Command="{Binding MenuCaliperBothCommand}" x:Name="menuCaliperBoth"></MenuItem>
+                    </MenuItem>
+                    <MenuItem  Header="Zoom" x:Name="menuZoom">
+                        <MenuItem  Header="Zoom Out" x:Name="menuZoomOut" Command="{Binding MenuZoomOutCommand}"></MenuItem>
+                        <MenuItem  Header="Zoom In" x:Name="menuZoomIn"  Command="{Binding MenuZoomInCommand}"></MenuItem>
+                    </MenuItem>
+                    <MenuItem    IsChecked="{Binding MenuDisplayInfo}"  Command="{Binding MenuDisplayInfoCommand}"  Header="Display Info" x:Name="menuDisplayInfo"></MenuItem>
+
+                    <MenuItem  Header="Annonymize" IsChecked="{Binding MenuAnnonymize}"  Command="{Binding MenuAnnonymizeCommand}"  x:Name="menuAnnonymize"></MenuItem>
+                </MenuItem>
+                <MenuItem  Header="Save" x:Name="menuSave">
+                    <MenuItem  Header="File ..." x:Name="menuSaveFile"  Command="{Binding MenuSaveFileCommand}"></MenuItem>
+                </MenuItem>
+
+                <MenuItem  Header="Close" x:Name="menuClose"  Command="{Binding MenuCloseCommand}"></MenuItem>
+                <MenuItem  Header="Plugin" x:Name="menuPlugin">
+                    <MenuItem  Header="" x:Name="menuAddPluginFile"  Command="{Binding MenuAddPluginFileCommand}"></MenuItem>
+                </MenuItem>
+
+            </Menu>
+
+        </Grid>
+        <Grid Grid.Row="1"  Visibility="{Binding FileLoadedControlVisiblity}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Margin="10 0">
+                <TextBlock Text="{Binding LabelPatient}"></TextBlock>
+            </Grid>
+            <StackPanel Grid.Column="1" Margin="10 0">
+                <TextBlock Text="{Binding LabelTime}"></TextBlock>
+                <TextBlock Text="{Binding LabelPatientSecond}"></TextBlock>
+
+            </StackPanel>
+
+            <Grid Grid.Column="2" Margin="10 0">
+                <TextBox IsEnabled="False" Text="{Binding LabelDiagnostic}"></TextBox>
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="2">
+            <UserControl x:Name="InnerECGPanel">
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" x:Name="scroller">
+
+                    <Image Visibility="{Binding FileLoadedControlVisiblity}" 
+                           MouseMove="UIElement_OnMouseMove" MouseLeftButtonDown="Content_OnMouseLeftButtonDown"
+                MouseLeftButtonUp="Content_OnMouseLeftButtonUp"
+                           Stretch="UniformToFill" Source="{Binding DrawBufferSource }" StretchDirection="UpOnly" x:Name="EcgImage"></Image>
+                </ScrollViewer>
+
+            </UserControl>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Label Content="{Binding StatusBarText}"></Label>
+        </Grid>
+    </Grid>
+</Window>

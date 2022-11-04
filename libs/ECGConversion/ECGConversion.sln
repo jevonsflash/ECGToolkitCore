@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECGConversion", "ECGConversion\ECGConversion.csproj", "{AA426F7D-582F-413F-A23D-903F95D79C07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aECG", "aECG\aECG.csproj", "{3428CB4E-4B71-49E0-81AF-7F571D01DEC0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DICOM", "DICOM\DICOM.csproj", "{0C39E926-01C0-49BC-A0C7-1D68DA3A97F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ISHNE", "ISHNE\ISHNE.csproj", "{15371E04-994E-4E9B-A23B-65D4BD51E0D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MUSEXML", "MUSEXML\MUSEXML.csproj", "{FBB4A63C-7944-4F52-8652-8F2F9A695636}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OmronECG", "OmronECG\OmronECG.csproj", "{6735FBC8-0483-445A-96B5-8B161459075F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PDF", "PDF\PDF.csproj", "{717B2BC0-0F39-454E-9D6A-40B605290C5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA426F7D-582F-413F-A23D-903F95D79C07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA426F7D-582F-413F-A23D-903F95D79C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA426F7D-582F-413F-A23D-903F95D79C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA426F7D-582F-413F-A23D-903F95D79C07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3428CB4E-4B71-49E0-81AF-7F571D01DEC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3428CB4E-4B71-49E0-81AF-7F571D01DEC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3428CB4E-4B71-49E0-81AF-7F571D01DEC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3428CB4E-4B71-49E0-81AF-7F571D01DEC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C39E926-01C0-49BC-A0C7-1D68DA3A97F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C39E926-01C0-49BC-A0C7-1D68DA3A97F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C39E926-01C0-49BC-A0C7-1D68DA3A97F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C39E926-01C0-49BC-A0C7-1D68DA3A97F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15371E04-994E-4E9B-A23B-65D4BD51E0D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15371E04-994E-4E9B-A23B-65D4BD51E0D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15371E04-994E-4E9B-A23B-65D4BD51E0D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15371E04-994E-4E9B-A23B-65D4BD51E0D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBB4A63C-7944-4F52-8652-8F2F9A695636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBB4A63C-7944-4F52-8652-8F2F9A695636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBB4A63C-7944-4F52-8652-8F2F9A695636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBB4A63C-7944-4F52-8652-8F2F9A695636}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6735FBC8-0483-445A-96B5-8B161459075F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6735FBC8-0483-445A-96B5-8B161459075F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6735FBC8-0483-445A-96B5-8B161459075F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6735FBC8-0483-445A-96B5-8B161459075F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{717B2BC0-0F39-454E-9D6A-40B605290C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{717B2BC0-0F39-454E-9D6A-40B605290C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{717B2BC0-0F39-454E-9D6A-40B605290C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{717B2BC0-0F39-454E-9D6A-40B605290C5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08969FAD-737F-4C3F-9816-BADA2DEB6832}
+	EndGlobalSection
+EndGlobal
